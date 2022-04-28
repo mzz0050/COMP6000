@@ -28,8 +28,13 @@ public class LoginServlet extends HttpServlet {
             HttpSession session = request.getSession();
               session.setAttribute("account", account);
 
+            RequestDispatcher requestDispatcher;
+              if (account.is_manager()) {
+                  requestDispatcher = request.getRequestDispatcher("manager.jsp");
 
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("index.jsp");
+              }else{
+                    requestDispatcher = request.getRequestDispatcher("index.jsp");
+              }
             requestDispatcher.forward(request, response);
         }
         else {

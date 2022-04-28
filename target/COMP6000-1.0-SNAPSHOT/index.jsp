@@ -16,7 +16,6 @@
 <%@include file="header.jsp"%>
 
                     <div class="ms-auto">
-                        <h6>Current Date:</h6>
                         <p>Have a Wonderful Day!</p>
                     </div>
 

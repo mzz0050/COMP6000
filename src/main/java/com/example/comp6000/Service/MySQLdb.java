@@ -174,4 +174,19 @@ public class MySQLdb {
         doSend(from_userID, amount);
         doReceive(to_userID, amount);
     }
+
+    public int countToday() {
+        int count = 0;
+        try {
+            String sql = "SELECT count(operation_id) as count FROM history WHERE date > CURRENT_DATE()-1 && date<CURRENT_DATE();";
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                count = rs.getInt("count");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
 }

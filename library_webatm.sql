@@ -1,137 +1,57 @@
--- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
---
--- Host: 127.0.0.1    Database: library_webatm
--- ------------------------------------------------------
--- Server version	8.0.28
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!50503 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+create database library_webatm;
 
---
--- Database: `library_catalog`
---
-CREATE DATABASE `library_webatm` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `library_webatm`;
+create table account
+(
+    accountid int auto_increment
+        primary key,
+    password  varchar(50) not null,
+    email     varchar(45) null,
+    type      tinyint(1)  not null
+);
 
---
--- Table structure for table `account`
---
+create table history
+(
+    user_id      int                                not null,
+    operation_id int auto_increment
+        primary key,
+    in_exp       float                              not null,
+    exe_type     varchar(45)                        not null,
+    date         datetime default CURRENT_TIMESTAMP not null
+);
 
-DROP TABLE IF EXISTS `account`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `account` (
-  `accountid` int NOT NULL AUTO_INCREMENT,
-  `password` varchar(50) NOT NULL,
-  `email` varchar(45) DEFAULT NULL,
-  `type` tinyint(1) NOT NULL,
-  PRIMARY KEY (`accountid`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
+create table user
+(
+    user_id int auto_increment
+        primary key,
+    name    varchar(45) null,
+    balance float       null
+);
 
---
--- Dumping data for table `account`
---
+insert into library_webatm.history (user_id, operation_id, in_exp, exe_type, date) values (2, 1, -100, 'Withdraw', '2022-04-25 12:10:21');
+insert into library_webatm.history (user_id, operation_id, in_exp, exe_type, date) values (1, 2, 200, 'Deposit', '2022-04-24 16:11:22');
+insert into library_webatm.history (user_id, operation_id, in_exp, exe_type, date) values (1, 3, 100, 'Deposit', '2022-04-22 16:11:22');
+insert into library_webatm.history (user_id, operation_id, in_exp, exe_type, date) values (2, 4, 1000, 'Deposit', '2022-04-25 16:11:22');
+insert into library_webatm.history (user_id, operation_id, in_exp, exe_type, date) values (3, 5, 2000, 'Deposit', '2022-04-20 16:11:22');
+insert into library_webatm.history (user_id, operation_id, in_exp, exe_type, date) values (4, 6, -540, 'Transfer', '2022-04-11 16:11:22');
+insert into library_webatm.history (user_id, operation_id, in_exp, exe_type, date) values (2, 7, 540, 'Transfer', '2022-04-25 16:11:22');
+insert into library_webatm.history (user_id, operation_id, in_exp, exe_type, date) values (3, 8, 50, 'Deposit', '2022-04-27 16:12:04');
+insert into library_webatm.history (user_id, operation_id, in_exp, exe_type, date) values (1, 9, 123, 'Deposit', '2022-04-27 18:44:21');
+insert into library_webatm.history (user_id, operation_id, in_exp, exe_type, date) values (1, 10, -123, 'Withdraw', '2022-04-27 19:04:30');
+insert into library_webatm.history (user_id, operation_id, in_exp, exe_type, date) values (1, 11, 123, 'Deposit', '2022-04-27 19:19:04');
+insert into library_webatm.history (user_id, operation_id, in_exp, exe_type, date) values (1, 12, -123, 'Withdraw', '2022-04-27 19:19:12');
+insert into library_webatm.history (user_id, operation_id, in_exp, exe_type, date) values (1, 13, -123, 'Transfer', '2022-04-27 19:34:13');
+insert into library_webatm.history (user_id, operation_id, in_exp, exe_type, date) values (2, 14, 123, 'Transfer', '2022-04-27 19:34:13');
+insert into library_webatm.history (user_id, operation_id, in_exp, exe_type, date) values (2, 15, -123, 'Transfer', '2022-04-27 19:36:57');
+insert into library_webatm.history (user_id, operation_id, in_exp, exe_type, date) values (1, 16, 123, 'Transfer', '2022-04-27 19:36:57');
 
-LOCK TABLES `account` WRITE;
-/*!40000 ALTER TABLE `account` DISABLE KEYS */;
-INSERT INTO `account` VALUES (1,'1','1@2.com',0),(2,'2','2@2.com',0);
-/*!40000 ALTER TABLE `account` ENABLE KEYS */;
-UNLOCK TABLES;
+insert into library_webatm.user (user_id, name, balance) values (1, 'zhao', 1615);
+insert into library_webatm.user (user_id, name, balance) values (2, 'qian', 5000);
+insert into library_webatm.user (user_id, name, balance) values (3, 'sun', 2000);
+insert into library_webatm.user (user_id, name, balance) values (4, 'li', 500);
 
---
--- Table structure for table `balance`
---
-
-DROP TABLE IF EXISTS `balance`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `balance` (
-  `user_id` int NOT NULL,
-  `balance` float DEFAULT NULL,
-  PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `balance`
---
-
-LOCK TABLES `balance` WRITE;
-/*!40000 ALTER TABLE `balance` DISABLE KEYS */;
-INSERT INTO `balance` VALUES (1,1000),(2,5000),(3,2000),(4,500);
-/*!40000 ALTER TABLE `balance` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `history`
---
-
-DROP TABLE IF EXISTS `history`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `history` (
-  `user_id` int NOT NULL,
-  `operation_id` int NOT NULL AUTO_INCREMENT,
-  `in/exp` float DEFAULT NULL,
-  `operation_date` date DEFAULT NULL,
-  `describe` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`operation_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `history`
---
-
-LOCK TABLES `history` WRITE;
-/*!40000 ALTER TABLE `history` DISABLE KEYS */;
-INSERT INTO `history` VALUES (2,1,100,'2022-04-25',NULL),(1,2,200,'2022-04-25',NULL),(1,3,100,'2022-04-26',NULL),(2,4,1000,'2022-04-26',NULL),(3,5,2000,'2022-04-27',NULL),(4,6,540,'2022-04-27',NULL);
-/*!40000 ALTER TABLE `history` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `user`
---
-
-DROP TABLE IF EXISTS `user`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `user` (
-  `user_id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) DEFAULT NULL,
-  `type` tinyint(1) DEFAULT NULL,
-  `actions` float DEFAULT NULL,
-  `opdate` date DEFAULT NULL,
-  PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `user`
---
-
-LOCK TABLES `user` WRITE;
-/*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'zhao',0,100,'2022-04-27'),(2,'qian',0,200,'2022-04-27'),(3,'sun',1,300,'2022-04-27'),(4,'li',1,50,'2022-04-27');
-/*!40000 ALTER TABLE `user` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
-
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2022-04-27  2:50:04
+insert into library_webatm.account (accountid, password, email, type) values (1, '1', '1@2.com', 0);
+insert into library_webatm.account (accountid, password, email, type) values (2, '2', '2@2.com', 0);
+insert into library_webatm.account (accountid, password, email, type) values (3, '123456', 'test', 1);
+insert into library_webatm.account (accountid, password, email, type) values (4, '1', 't1@1.com', 1);
+insert into library_webatm.account (accountid, password, email, type) values (5, '1', 't2@1.com', 0);

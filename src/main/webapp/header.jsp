@@ -1,4 +1,5 @@
-<%--
+<%@ page import="com.sun.xml.internal.ws.api.server.WSEndpoint" %>
+<%@ page import="com.example.comp6000.Models.AccountModel" %><%--
   Created by IntelliJ IDEA.
   User: Chan
   Date: 2022/4/27
@@ -6,7 +7,15 @@
   To change this template use File | Settings | File Templates.
 --%>
 <link href="main.css" rel="stylesheet" type="text/css">
+<%
+        AccountModel account = null;
+        if(session.getAttribute("account") == null) {
+            response.sendRedirect("login.jsp");
 
+        }
+            else{
+                account = (AccountModel)session.getAttribute("account");}
+            %>
     <div class="container">
         <div class="row">
             <div class="col-12 col-lg-3">
@@ -21,6 +30,11 @@
                         <h5 class="my-3">Actions</h5>
                         <div class="fm-menu">
                             <div class="list-group list-group-flush">
+                                <%if (account.is_manager()){%>
+                                <a href="manager.jsp" class="list-group-item py-1">
+                                    <img src="pics/Manager.png" alt="Manager" width="30" height="30" />
+                                    </i><span style="margin-left: 10px; padding:2px">Manager View</span></a>
+                                <%}%>
                                 <a href="deposit.jsp" class="list-group-item py-1">
                                     <img src="pics/deposit.png" alt="Deposit" width="30" height="30" />
                                     </i><span style="margin-left: 10px; padding:2px">Deposit</span></a>
@@ -44,5 +58,5 @@
             <div class="col-12 col-lg-9">
                 <div class="card">
                     <div class="card-body">
-                        <div class="ms-auto"><h6>Hi Joshua</h6>
+                        <div class="ms-auto"><h6>Hi <%=account.getEmail()%></h6>
                         </div>

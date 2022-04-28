@@ -12,6 +12,10 @@ public class UserModel {
         this.balance = balance;
     }
 
+    public float getBalance() {
+        return balance;
+    }
+
     public int getUser_id() {
         return user_id;
     }
