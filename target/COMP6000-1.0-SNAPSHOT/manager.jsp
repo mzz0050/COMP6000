@@ -130,7 +130,7 @@
 						<thead>
 							<tr>
 								<th>ID</th>
-								<th>Name <i class="bx bx-down-arrow-alt ms-2"></i>
+								<th>Name <i class="bx ms-2"></i>
 								</th>
 								<th>Balances</th>
 								<th></th>

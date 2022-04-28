@@ -61,11 +61,6 @@
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                <label>Manager?</label>
-                                <input type="checkbox" id="type" name="type" value="1"/>
-                            </div>
-
                             <!-- password-confirm group -->
                             <div class="form-group">
 
@@ -85,6 +80,12 @@
                                     </div>
 
                                 </div>
+
+                                <div class="form-group">
+                                    <label>Manager?</label>
+                                    <input type="checkbox" id="type" name="type" value="1"/>
+                                </div>
+
                                 <!-- password-confirm error message -->
                                 <div class="help-block text-right">
                                         <i id="message"></i>

@@ -58,5 +58,5 @@
             <div class="col-12 col-lg-9">
                 <div class="card">
                     <div class="card-body">
-                        <div class="ms-auto"><h6>Hi <%=account.getEmail()%></h6>
+                        <div class="ms-auto"><h6>Hi <%=account.is_manager()?"Manager":"Clerk"%>  <%=account.getEmail()%></h6>
                         </div>
