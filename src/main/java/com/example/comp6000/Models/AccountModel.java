@@ -5,16 +5,15 @@ public class AccountModel {
     int account_id;
     String password;
     String email;
-    int type;
+    boolean is_manager;
 
-    public int getType() {
-        return type;
+    public AccountModel() {
     }
 
-    public void setType(int type) {
-        this.type = type;
-    }
 
+    public boolean is_manager() {
+        return is_manager;
+    }
     public String getEmail() {
         return email;
     }
@@ -40,11 +39,11 @@ public class AccountModel {
         this.password = password;
     }
 
-    public AccountModel(int account_id, String password, String email, int type) {
+    public AccountModel(int account_id, String password, String email, boolean is_manager) {
         this.account_id = account_id;
         this.password = password;
         this.email = email;
-        this.type = type;
+        this.is_manager = is_manager;
     }
 
 }

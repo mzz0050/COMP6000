@@ -9,6 +9,16 @@
     </properties>
     <root id="archive" name="COMP6000-1.0-SNAPSHOT.war">
       <element id="artifact" artifact-name="COMP6000:war exploded" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="library" level="application" name="boxicons" />
+          <element id="library" level="application" name="lineicons" />
+          <element id="library" level="application" name="font-awesome" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="mysql.connector.java" />
+        </element>
+      </element>
     </root>
   </artifact>
 </component>
